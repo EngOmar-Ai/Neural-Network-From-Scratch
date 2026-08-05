@@ -1,4 +1,4 @@
-from network import NeuralNetwork, CrossEntropyLoss, Linear, ReLU
+from network import NeuralNetwork, CrossEntropyLoss, Linear, ReLU, LinearLRScheduler
 
 model: NeuralNetwork = NeuralNetwork(
     layers=[
@@ -14,6 +14,13 @@ model: NeuralNetwork = NeuralNetwork(
 )
 
 criterion = CrossEntropyLoss
+
+lr_scheduler = LinearLRScheduler(
+    neural_network=model,
+    start_factor=0.01,
+    end_factor=1,
+    total_steps=2000
+)
 
 if __name__ == "__main__":
     ...
