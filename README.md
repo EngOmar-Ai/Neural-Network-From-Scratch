@@ -221,9 +221,9 @@ The macro F1 score indicates that performance remains consistently strong across
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/neural-network-from-scratch.git
+git clone https://github.com/omar-gh-101/Neural-Network-From-Scratch.git
 
-cd neural-network-from-scratch
+cd Neural-Network-From-Scratch
 ```
 
 Install dependencies:
