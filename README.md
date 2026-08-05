@@ -35,7 +35,6 @@ The objective was not to build the fastest neural network, but to understand how
 * Fully vectorized operations
 * He initialization
 * Numerically stable Softmax
-* Linear Learning Rate Scheduler
 * Cross Entropy Loss
 * Modular layer design
 * Object-oriented architecture
@@ -222,7 +221,9 @@ The macro F1 score indicates that performance remains consistently strong across
 Clone the repository:
 
 ```bash
-git clone https://github.com/omar-gh-101/Neural-Network-From-Scratch.git
+git clone https://github.com/yourusername/neural-network-from-scratch.git
+
+cd neural-network-from-scratch
 ```
 
 Install dependencies:
@@ -260,5 +261,5 @@ Potential extensions to this project include:
 * Saving and loading trained weights
 * GPU acceleration through CuPy
 * Automatic gradient checking
-* more Learning rate schedulers
+* Learning rate schedulers
 * Experiment configuration via YAML/JSON
