@@ -1,26 +1,19 @@
-from network import NeuralNetwork, CrossEntropyLoss, Linear, ReLU, LinearLRScheduler
+from package import optimizers, layers, loss_functions, activations, learning_rate_schedulers
+from package.network import NeuralNetwork
 
 model: NeuralNetwork = NeuralNetwork(
     layers=[
-        Linear(28 * 28, 128),
-        ReLU(),
-        Linear(128, 64),
-        ReLU(),
-        Linear(64, 32),
-        ReLU(),
-        Linear(32, 10)
-    ],
-    learning_rate=0.01
+        layers.Linear(784, 128),
+        activations.ReLU(),
+        layers.Linear(128, 128),
+        activations.ReLU(),
+        layers.Linear(128, 10),
+    ]
 )
 
-criterion = CrossEntropyLoss
+criterion = loss_functions.CrossEntropyLoss
 
-lr_scheduler = LinearLRScheduler(
-    neural_network=model,
-    start_factor=0.01,
-    end_factor=1,
-    total_steps=2000
-)
+optimizer = optimizers.StochasticGradientDescent(model, 0.01)
 
 if __name__ == "__main__":
     ...
