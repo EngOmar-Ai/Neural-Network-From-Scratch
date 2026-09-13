@@ -1,10 +1,10 @@
 from package.base import Loss, np
 
 class MeanSquaredError(Loss):
-    raise NotImplementedError
+    ...
 
 class MeanAbsoluteError(Loss):
-    raise NotImplementedError
+    ...
 
 class CrossEntropyLoss(Loss):
     @staticmethod

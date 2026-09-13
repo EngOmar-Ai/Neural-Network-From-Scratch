@@ -1,5 +1,5 @@
 from src.data import load_testing_data, load_training_data
-from src.model import model, criterion, optimizer
+from src.model import model, criterion, optimizer, scheduler
 
 import numpy as np
 
@@ -28,6 +28,7 @@ def train(epochs: int):
             error = criterion.backward(prediction, y)
 
             optimizer.step(error)
+            scheduler.step()
 
             training_counter += 1
             training_loss += loss

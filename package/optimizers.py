@@ -57,4 +57,4 @@ class StochasticGradientDescent(Optimizer):
                 raise TypeError(f"Expected an Activation Function or a Neural Layer, Received {type(layer)}")
 
 class Adam(Optimizer):
-    raise NotImplementedError
+    ...
