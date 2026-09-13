@@ -1,4 +1,4 @@
-from package import optimizers, layers, loss_functions, activations, learning_rate_schedulers
+from package import optimizers, layers, loss, activations
 from package.network import NeuralNetwork
 
 model: NeuralNetwork = NeuralNetwork(
@@ -11,7 +11,7 @@ model: NeuralNetwork = NeuralNetwork(
     ]
 )
 
-criterion = loss_functions.CrossEntropyLoss
+criterion = loss.CrossEntropyLoss
 
 optimizer = optimizers.StochasticGradientDescent(model, 0.01)
 
