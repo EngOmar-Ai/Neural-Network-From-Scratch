@@ -22,7 +22,7 @@ scheduler = schedulers.LinearLearningRateScheduler(
     optimizer=optimizer,
     start_factor=0.05,
     end_factor=1,
-    transition_steps=50000,
+    transition_steps=10000,
 )
 
 if __name__ == "__main__":

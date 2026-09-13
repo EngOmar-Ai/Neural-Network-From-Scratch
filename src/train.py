@@ -87,7 +87,4 @@ def test():
     print(f"Test Accuracy: {accuracy * 100}%")
 
 if __name__ == "__main__":
-    print(f"Initial Loss (Pre-Training): {validate()}")
-    for i in range(10):
-        train(1)
-        test()
+    ...
