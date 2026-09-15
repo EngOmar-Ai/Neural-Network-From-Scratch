@@ -1,4 +1,5 @@
-from package import optimizers, layers, loss, activations, schedulers
+from package import optimizers, layers, activations
+from src import schedulers, loss
 from package.network import NeuralNetwork
 
 model: NeuralNetwork = NeuralNetwork(
