@@ -1,13 +1,12 @@
-from package import optimizers, layers, activations
-from src import schedulers, loss
-from package.network import NeuralNetwork
+from network import optimizers, layers, schedulers, loss
+from network import NeuralNetwork
 
 model: NeuralNetwork = NeuralNetwork(
     layers=[
         layers.Linear(784, 128),
-        activations.ReLU(),
+        layers.ReLU(),
         layers.Linear(128, 128),
-        activations.ReLU(),
+        layers.ReLU(),
         layers.Linear(128, 10),
     ]
 )
@@ -19,12 +18,7 @@ optimizer = optimizers.StochasticGradientDescent(
     learning_rate=0.01,
 )
 
-scheduler = schedulers.LinearLearningRateScheduler(
-    optimizer=optimizer,
-    start_factor=0.05,
-    end_factor=1,
-    transition_steps=10000,
-)
+scheduler = ...
 
 if __name__ == "__main__":
     ...
