@@ -10,14 +10,17 @@ class StochasticGradientDescent(Optimizer):
         self.neural_network = neural_network
         self.learning_rate = learning_rate
 
-        self.step = 0
+        self.steps = 0
 
-    def step(self, loss_gradients: np.ndarray, **kwargs) -> None:
+    def step(self, **kwargs) -> None:
 
         for parameters, gradients in self.neural_network.parameters():
-            parameters = parameters - (self.learning_rate * gradients)
+            parameters -= self.learning_rate * gradients
 
-        self.step = self.step + 1
+        self.steps = self.steps + 1
 
 class Adam(Optimizer):
+    ...
+
+if __name__ == "__main__":
     ...

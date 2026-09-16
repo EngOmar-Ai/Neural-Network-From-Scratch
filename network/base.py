@@ -23,7 +23,7 @@ class Loss:
 
 class Optimizer:
 
-    def step(self, loss_gradients: np.ndarray, **kwargs) -> None:
+    def step(self, **kwargs) -> None:
         ...
 
 class Scheduler:

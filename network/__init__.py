@@ -4,6 +4,7 @@ class NeuralNetwork:
 
     def __init__(self, layers: list|tuple) -> None:
         self.layers = layers
+        self.training = False
 
     def forward(self, x: np.ndarray) -> np.ndarray:
         for layer in self.layers:
@@ -12,13 +13,19 @@ class NeuralNetwork:
 
     def backward(self, loss_gradients: np.ndarray) -> None:
         for layer in reversed(self.layers):
-            loss_gradients = layer.backward(loss_gradients)
+            loss_gradients = layer.backward(loss_gradients, training=self.training)
 
     def parameters(self):
         params = []
         for layer in self.layers:
             params.append(layer.parameters())
         return params
+
+    def train(self):
+        self.training = True
+
+    def eval(self):
+        self.training = False
 
 if __name__ == "__main__":
     ...

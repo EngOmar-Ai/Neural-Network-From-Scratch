@@ -33,16 +33,16 @@ class ReLU(Layer):
 
     def __init__(self) -> None:
 
-        self.input = None
+        self.mask = None
 
     def forward(self, x: np.ndarray, **kwargs) -> np.ndarray:
 
-        self.input = x
-        return x * (x > 0)
+        self.mask = (x > 0)
+        return x * self.mask
 
     def backward(self, gradients: np.ndarray, **kwargs) -> np.ndarray:
 
-        return gradients * (self.input > 0)
+        return gradients * self.mask
 
     def parameters(self) -> list:
         return []
@@ -65,7 +65,7 @@ class Dropout(Layer):
             mask = (np.random.rand(*x.shape) > self.probability)
             self.mask = mask
 
-            return (x * mask) / 1 - self.probability
+            return (x * mask) / (1 - self.probability)
 
         return x
 
@@ -74,7 +74,7 @@ class Dropout(Layer):
         training = kwargs.get("training", False)
 
         if training:
-             return gradients * self.mask
+             return (gradients * self.mask) / (1 - self.probability)
 
         return gradients
 
