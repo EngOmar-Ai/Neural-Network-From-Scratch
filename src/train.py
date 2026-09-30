@@ -3,7 +3,7 @@ from src.model import model, criterion, optimizer, scheduler
 
 import numpy as np
 
-def train(epochs: int):
+def train(epochs: int = 1):
 
     model.train()
 
@@ -74,6 +74,11 @@ def test():
 
     print(f"Test Accuracy = {accuracy * 100}%")
 
+def save():
+    ...
+
+def load():
+    ...
 
 if __name__ == "__main__":
     ...

@@ -96,5 +96,14 @@ class Dropout(Layer):
     def parameters(self) -> list:
         return []
 
+class Sigmoid(Layer):
+    ...
+
+class LeakyReLU(Layer):
+    ...
+
+class Tanh(Layer):
+    ...
+
 if __name__ == "__main__":
     ...
