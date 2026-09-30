@@ -9,8 +9,8 @@ class Linear(Layer):
         self.bias = np.zeros(out_features)
 
         self.input = None
-        self.dw = None
-        self.db = None
+        self.dw = np.zeros((in_features, out_features))
+        self.db = np.zeros(out_features)
 
     def forward(self, x: np.ndarray, **kwargs) -> np.ndarray:
 
@@ -19,10 +19,15 @@ class Linear(Layer):
 
     def backward(self, gradients: np.ndarray, **kwargs) -> np.ndarray:
 
+        if self.input is None:
+            raise RuntimeError("Cannot call backward() before forward(). Please Respect The Order Of Operations")
+
         batch_size = gradients.shape[0]
 
         self.dw = (self.input.T @ gradients) / batch_size
         self.db = np.sum(gradients, axis=0) / batch_size
+
+        self.input = None
 
         return gradients @ self.weights.T
 
@@ -42,7 +47,13 @@ class ReLU(Layer):
 
     def backward(self, gradients: np.ndarray, **kwargs) -> np.ndarray:
 
-        return gradients * self.mask
+        if self.mask is None:
+            raise RuntimeError("Cannot call backward() before forward(). Please Respect The Order Of Operations")
+
+        mask = self.mask
+        self.mask = None
+
+        return gradients * mask
 
     def parameters(self) -> list:
         return []
@@ -71,10 +82,16 @@ class Dropout(Layer):
 
     def backward(self, gradients: np.ndarray, **kwargs) -> np.ndarray:
 
+        if self.mask is None:
+            raise RuntimeError("Cannot call backward() before forward(). Please Respect The Order Of Operations")
+
         training = kwargs.get("training", False)
 
+        mask = self.mask
+        self.mask = None
+
         if training:
-             return (gradients * self.mask) / (1 - self.probability)
+            return (gradients * mask) / (1 - self.probability)
 
         return gradients
 
