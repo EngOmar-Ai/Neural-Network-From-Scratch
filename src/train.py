@@ -1,5 +1,5 @@
 from src.data import load_testing_data, load_training_data
-from src.model import model, criterion, optimizer
+from src.model import model, criterion, optimizer, scheduler
 
 import numpy as np
 
@@ -23,6 +23,8 @@ def train(epochs: int):
 
             optimizer.step()
             optimizer.zero_grad()
+
+            scheduler.step()
 
             training_counter += 1
             training_loss += loss

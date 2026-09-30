@@ -74,3 +74,6 @@ class CrossEntropyLoss(Loss):
         exponent = np.exp(shifted)
         probabilities = exponent / np.sum(exponent, axis=-1, keepdims=True)
         return probabilities - labels
+
+if __name__ == "__main__":
+    ...

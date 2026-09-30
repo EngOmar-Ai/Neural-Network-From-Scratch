@@ -1,4 +1,4 @@
-from network import NeuralNetwork, optimizers, layers, loss
+from network import NeuralNetwork, optimizers, schedulers, layers, loss
 
 model: NeuralNetwork = NeuralNetwork(
     layers=[
@@ -19,7 +19,12 @@ optimizer = optimizers.StochasticGradientDescent(
     learning_rate=0.01,
 )
 
-scheduler = ...
+scheduler = schedulers.LinearLearningRateScheduler(
+    optimizer=optimizer,
+    start_factor=0.01,
+    end_factor=1,
+    transition_steps=1000
+)
 
 if __name__ == "__main__":
     ...
