@@ -76,7 +76,7 @@ def test():
 
     number_of_classes = int(max(predictions.max(), labels.max())) + 1
 
-    matrix = np.zeros((number_of_classes, number_of_classes))
+    matrix = np.zeros((number_of_classes, number_of_classes), dtype=int)
     np.add.at(matrix, (labels, predictions), 1)
 
     loss = validate()

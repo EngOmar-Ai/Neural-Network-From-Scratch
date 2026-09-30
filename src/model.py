@@ -2,13 +2,13 @@ from network import NeuralNetwork, optimizers, schedulers, layers, loss
 
 model: NeuralNetwork = NeuralNetwork(
     layers=[
-        layers.Linear(28 * 28, 128),
+        layers.Linear(28 * 28, 512),
         layers.ReLU(),
         layers.Dropout(0.2),
-        layers.Linear(128, 64),
+        layers.Linear(512, 256),
         layers.ReLU(),
         layers.Dropout(0.2),
-        layers.Linear(64, 10),
+        layers.Linear(256, 10),
     ]
 )
 
@@ -16,7 +16,7 @@ criterion = loss.CrossEntropyLoss
 
 optimizer = optimizers.StochasticGradientDescent(
     neural_network=model,
-    learning_rate=0.01,
+    learning_rate=0.005,
 )
 
 scheduler = schedulers.LinearLearningRateScheduler(
