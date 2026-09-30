@@ -1,7 +1,15 @@
-from network.base import Loss, np
+from network.base import Loss
+import numpy as np
 
 class MeanSquaredError(Loss):
-    ...
+
+    @staticmethod
+    def forward(predictions: np.ndarray, labels: np.ndarray) -> float | int:
+        return np.mean((predictions - labels) ** 2)
+
+    @staticmethod
+    def backward(predictions: np.ndarray, labels: np.ndarray) -> np.ndarray:
+        return 2 * (predictions - labels) / predictions.shape[0]
 
 class MeanAbsoluteError(Loss):
     ...

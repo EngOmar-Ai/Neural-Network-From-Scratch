@@ -1,6 +1,8 @@
 from src.data import load_testing_data, load_training_data
 from src.model import model, criterion, optimizer
 
+import numpy as np
+
 def train(epochs: int):
 
     model.train()
@@ -44,10 +46,32 @@ def validate():
         validation_counter += 1
         validation_loss += loss
 
+    model.train()
+
     return validation_loss / validation_counter
 
 def test():
-    ...
+
+    model.eval()
+
+    predictions = []
+    labels = []
+
+    for x, y in load_testing_data(batch_size=32):
+
+        prediction = np.argmax(model.forward(x), axis=1).tolist()
+        label = np.argmax(y, axis=1).tolist()
+
+        predictions.append(prediction)
+        labels.append(label)
+
+    predictions = np.concatenate(predictions)
+    labels = np.concatenate(labels)
+
+    accuracy = np.mean(predictions == labels)
+
+    print(f"Test Accuracy = {accuracy * 100}%")
+
 
 if __name__ == "__main__":
     ...

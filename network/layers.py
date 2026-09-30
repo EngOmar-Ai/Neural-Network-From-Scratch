@@ -22,10 +22,8 @@ class Linear(Layer):
         if self.input is None:
             raise RuntimeError("Cannot call backward() before forward(). Please Respect The Order Of Operations")
 
-        batch_size = gradients.shape[0]
-
-        self.dw = (self.input.T @ gradients) / batch_size
-        self.db = np.sum(gradients, axis=0) / batch_size
+        self.dw = (self.input.T @ gradients)
+        self.db = np.sum(gradients, axis=0)
 
         self.input = None
 
