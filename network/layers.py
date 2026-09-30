@@ -72,10 +72,10 @@ class Dropout(Layer):
 
         training = kwargs.get("training", False)
 
-        if training:
-            mask = (np.random.rand(*x.shape) > self.probability)
-            self.mask = mask
+        mask = (np.random.rand(*x.shape) > self.probability)
+        self.mask = mask
 
+        if training:
             return (x * mask) / (1 - self.probability)
 
         return x

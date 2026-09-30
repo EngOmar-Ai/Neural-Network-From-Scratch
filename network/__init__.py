@@ -18,7 +18,7 @@ class NeuralNetwork:
     def parameters(self):
         params = []
         for layer in self.layers:
-            params.append(layer.parameters())
+            params.extend(layer.parameters())
         return params
 
     def train(self):
