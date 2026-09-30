@@ -11,9 +11,9 @@ class NeuralNetwork:
             x = layer.forward(x)
         return x
 
-    def backward(self, loss_gradients: np.ndarray) -> None:
+    def backward(self, gradients: np.ndarray) -> None:
         for layer in reversed(self.layers):
-            loss_gradients = layer.backward(loss_gradients, training=self.training)
+            gradients = layer.backward(gradients, training=self.training)
 
     def parameters(self):
         params = []

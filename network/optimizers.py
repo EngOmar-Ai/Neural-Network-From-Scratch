@@ -1,8 +1,6 @@
 from network.base import Optimizer
 from network import NeuralNetwork
 
-import numpy as np
-
 class StochasticGradientDescent(Optimizer):
 
     def __init__(self, neural_network: NeuralNetwork, learning_rate: float|int) -> None:
@@ -11,6 +9,11 @@ class StochasticGradientDescent(Optimizer):
         self.learning_rate = learning_rate
 
         self.steps = 0
+
+    def zero_grad(self) -> None:
+
+        for _, gradients in self.neural_network.parameters():
+            gradients[...] = 0
 
     def step(self, **kwargs) -> None:
 
