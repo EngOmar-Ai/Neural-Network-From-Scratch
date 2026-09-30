@@ -30,8 +30,7 @@ def load_training_data(batch_size: int) -> Generator:
         reader = csv.reader(file)
         next(reader)
 
-        batch_input = []
-        batch_output = []
+        batch_input, batch_output = [], []
 
         for row in reader:
 
@@ -48,8 +47,7 @@ def load_training_data(batch_size: int) -> Generator:
 
             if len(batch_input) == batch_size:
                 yield np.stack(batch_input), np.stack(batch_output)
-                batch_input = []
-                batch_output = []
+                batch_input, batch_output = [], []
 
 def load_testing_data(batch_size: int) -> Generator:
     """
@@ -75,8 +73,7 @@ def load_testing_data(batch_size: int) -> Generator:
         reader = csv.reader(file)
         next(reader)
 
-        batch_input = []
-        batch_output = []
+        batch_input, batch_output = [], []
 
         for row in reader:
 
@@ -93,8 +90,7 @@ def load_testing_data(batch_size: int) -> Generator:
 
             if len(batch_input) == batch_size:
                 yield np.stack(batch_input), np.stack(batch_output)
-                batch_input = []
-                batch_output = []
+                batch_input, batch_output = [], []
 
 if __name__ == '__main__':
     ...

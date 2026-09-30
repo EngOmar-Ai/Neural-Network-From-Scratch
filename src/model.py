@@ -1,13 +1,14 @@
-from network import optimizers, layers, schedulers, loss
-from network import NeuralNetwork
+from network import NeuralNetwork, optimizers, layers, loss
 
 model: NeuralNetwork = NeuralNetwork(
     layers=[
-        layers.Linear(784, 128),
+        layers.Linear(28 * 28, 128),
         layers.ReLU(),
-        layers.Linear(128, 128),
+        layers.Dropout(0.2),
+        layers.Linear(128, 64),
         layers.ReLU(),
-        layers.Linear(128, 10),
+        layers.Dropout(0.2),
+        layers.Linear(64, 10),
     ]
 )
 
