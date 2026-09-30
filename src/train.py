@@ -1,3 +1,5 @@
+import math
+
 from src.data import load_testing_data, load_training_data
 from src.model import model, criterion, optimizer, scheduler
 
@@ -72,7 +74,21 @@ def test():
 
     accuracy = np.mean(predictions == labels)
 
-    print(f"Test Accuracy = {accuracy * 100}%")
+    number_of_classes = int(max(predictions.max(), labels.max())) + 1
+
+    matrix = np.zeros((number_of_classes, number_of_classes))
+    np.add.at(matrix, (labels, predictions), 1)
+
+    loss = validate()
+    perplexity = np.exp(loss)
+
+    print("----- Performance Report -----------------------------------------")
+    print(f"Number of classes: {number_of_classes}")
+    print(f"Test Accuracy: {accuracy * 100} %")
+    print(f"Testing Loss: {loss}")
+    print(f"Testing Perplexity: {perplexity}")
+    print(f"Confusion Matrix:\n{matrix}")
+    print("------------------------------------------------------------------")
 
 def save():
     ...
